@@ -1,0 +1,87 @@
+#page-title {
+  text-shadow:
+    0.1rem 2px 0px var(--accent-color),
+    0.15rem 2px 0px var(--accent-color),
+    0.2rem 2px 0px var(--text-color);
+  letter-spacing: 0.15rem;
+}
+
+#page-subtitle {
+  word-spacing: -0.25rem;
+  /* animation: fadeOut 1s ease-out normal; */
+
+  text-shadow: 0.05rem 0.05rem 0.15rem var(--accent-color);
+}
+
+#page-subtitle:hover {
+  transform-origin: center;
+  animation: tickleText 1s infinite;
+}
+
+@keyframes tickleText {
+  0%,
+  100% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+}
+
+#animated-bg li {
+  position: absolute;
+  top: 80vh;
+  left: 45vw;
+  width: 10px;
+  height: 10px;
+  border: solid 1px var(--primary-color);
+  color: transparent;
+  transform-origin: top left;
+  transform: scale(0) rotate(0deg) translate(-50%, -50%);
+  animation: bg-animation 7s ease-in forwards infinite;
+}
+
+#animated-bg li:nth-child(0) {
+  animation-delay: 0s;
+  left: 52vw;
+  top: 8vh;
+}
+
+#animated-bg li:nth-child(1) {
+  animation-delay: 1500ms;
+  left: 96vw;
+  top: 38vh;
+}
+
+#animated-bg li:nth-child(2) {
+  animation-delay: 2000ms;
+  left: 39vw;
+  top: 50vh;
+}
+
+#animated-bg li:nth-child(3) {
+  animation-delay: 4000ms;
+  left: 7vw;
+  top: 97vh;
+}
+
+@keyframes bg-animation {
+  from {
+    transform: scale(0) rotate(0deg) translate(-50%, -50%);
+    opacity: 1;
+  }
+  to {
+    transform: scale(20) rotate(960deg) translate(-50%, -50%);
+    opacity: 0;
+  }
+}
+
+/* About Section */
+#about-me {
+  background-color: var(--primary-color);
+  color: var(--bg-color);
+}
+
+.ghost-button {
+  border-color: var(--bg-color);
+}

@@ -1,0 +1,114 @@
+---
+import "../styles/global.css";
+import "../styles/home.css";
+import { Icon } from "astro-icon/components";
+---
+
+<style></style>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <meta name="generator" content={Astro.generator} />
+    <title>Rodrigo Narvaez</title>
+    <link rel="sitemap" href="/sitemap-index.xml" />
+  </head>
+  <body>
+    <header class="sticky left-0 right-0 top-0 py-2">
+      <div class="container mx-auto px-2 md:px-0">
+        <nav>
+          <ul class="flex gap-2">
+            <li class="nav-list-item">
+              <a class="nav-link" href="#home">Home</a>
+            </li>
+            <li class="nav-list-item">
+              <a class="nav-link" href="#about-me">About</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main class="flex min-h-screen flex-col">
+      <section
+        id="home"
+        class="relative flex min-h-screen items-center justify-center"
+      >
+        <div class="container mx-auto w-fit px-2 md:px-0">
+          <h1 id="page-title" class="text-5xl font-bold">Rodrigo Narvaez</h1>
+          <p id="page-subtitle" class="w-fit text-2xl">Software Developer</p>
+        </div>
+        <ul
+          id="animated-bg"
+          class="absolute bottom-0 left-0 right-0 top-0 -z-50 overflow-hidden"
+        >
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </section>
+      <section
+        id="about-me"
+        class="flex min-h-screen items-center justify-center"
+      >
+        <div
+          class="container mx-auto flex flex-col items-start justify-start px-2 md:px-0"
+        >
+          <h2 class="mb-2 text-[2rem] font-bold">About Me</h2>
+          <p class="mb-2">
+            My name is Rodrigo Narvaez, I am a full-stack software developer
+            specialized in JavaScript and TypeScript using technologies like
+            React, GraphQL, Openapi, Node.JS, AWS, MongoDB, and SQL databases.
+          </p>
+          <p class="mb-2">
+            I also have experience with other languages like Java and Python,
+            and I have used frameworks like Spring, Hibernate, JSF in the past.
+            As part of my continuous learning, I have developed projects using
+            Astro, Pandas, and more.
+          </p>
+          {
+            false && (
+              <button class="ghost-button self-end border-2 px-4 py-2">
+                More about me
+              </button>
+            )
+          }
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div
+        class="container mx-auto flex flex-row items-center justify-between px-2 py-3 text-sm md:px-0"
+      >
+        <p class="text-center">
+          &copy; {new Date().getFullYear()} Rodrigo Narvaez
+        </p>
+        <ul class="flex gap-2">
+          <li>
+            <a target="_blank" href="https://www.linkedin.com/in/ronarvaez/"
+              ><Icon name="openmoji:linkedin" class="h-[30px] w-[30px]" /></a
+            >
+          </li>
+          <li>
+            <a target="_blank" href="https://github.com/rodrigonarvaez"
+              ><Icon name="openmoji:github" class="h-[30px] w-[30px]" /></a
+            >
+          </li>
+          <li>
+            <a target="_blank" href="https://www.instagram.com/ro.narvaez_/"
+              ><Icon name="openmoji:instagram" class="h-[30px] w-[30px]" /></a
+            >
+          </li>
+        </ul>
+      </div>
+    </footer>
+    <script>
+      import "../scripts/Lenis.ts";
+    </script>
+  </body>
+</html>
