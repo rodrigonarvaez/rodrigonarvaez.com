@@ -8,10 +8,7 @@ import { Icon } from "astro-icon/components";
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, user-scalable=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <title>Rodrigo Narvaez</title>
     <link rel="sitemap" href="/sitemap-index.xml" />
@@ -88,17 +85,26 @@ import { Icon } from "astro-icon/components";
         </p>
         <ul class="flex gap-2">
           <li>
-            <a target="_blank" href="https://www.linkedin.com/in/ronarvaez/"
+            <a
+              target="_blank"
+              href="https://www.linkedin.com/in/ronarvaez/"
+              aria-lable="Go to my LinkedIn profile"
               ><Icon name="openmoji:linkedin" class="h-[30px] w-[30px]" /></a
             >
           </li>
           <li>
-            <a target="_blank" href="https://github.com/rodrigonarvaez"
+            <a
+              target="_blank"
+              href="https://github.com/rodrigonarvaez"
+              aria-lable="Go to my GitHub profile"
               ><Icon name="openmoji:github" class="h-[30px] w-[30px]" /></a
             >
           </li>
           <li>
-            <a target="_blank" href="https://www.instagram.com/ro.narvaez_/"
+            <a
+              target="_blank"
+              href="https://www.instagram.com/ro.narvaez_/"
+              aria-lable="Go to my Instagram profile"
               ><Icon name="openmoji:instagram" class="h-[30px] w-[30px]" /></a
             >
           </li>
@@ -107,6 +113,7 @@ import { Icon } from "astro-icon/components";
     </footer>
     <script>
       import "../scripts/Lenis.ts";
+      import "../scripts/Gsap.ts";
     </script>
   </body>
 </html>
