@@ -4,17 +4,16 @@ import "../styles/home.css";
 import { Icon } from "astro-icon/components";
 ---
 
-<style></style>
-
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, user-scalable=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
+    <meta
+      name="description"
+      content="Rodrigo Narvaez's personal website and portfolio."
+    />
     <title>Rodrigo Narvaez</title>
     <link rel="sitemap" href="/sitemap-index.xml" />
   </head>
@@ -90,17 +89,26 @@ import { Icon } from "astro-icon/components";
         </p>
         <ul class="flex gap-2">
           <li>
-            <a target="_blank" href="https://www.linkedin.com/in/ronarvaez/"
+            <a
+              target="_blank"
+              href="https://www.linkedin.com/in/ronarvaez/"
+              aria-label="Go to my LinkedIn profile"
               ><Icon name="openmoji:linkedin" class="h-[30px] w-[30px]" /></a
             >
           </li>
           <li>
-            <a target="_blank" href="https://github.com/rodrigonarvaez"
+            <a
+              target="_blank"
+              href="https://github.com/rodrigonarvaez"
+              aria-label="Go to my GitHub profile"
               ><Icon name="openmoji:github" class="h-[30px] w-[30px]" /></a
             >
           </li>
           <li>
-            <a target="_blank" href="https://www.instagram.com/ro.narvaez_/"
+            <a
+              target="_blank"
+              href="https://www.instagram.com/ro.narvaez_/"
+              aria-label="Go to my Instagram profile"
               ><Icon name="openmoji:instagram" class="h-[30px] w-[30px]" /></a
             >
           </li>
@@ -108,7 +116,8 @@ import { Icon } from "astro-icon/components";
       </div>
     </footer>
     <script>
-      import "../scripts/Lenis.ts";
+      import Lenis from "../scripts/Lenis.ts";
+      Lenis({ development: process.env.NODE_ENV === "development" });
     </script>
   </body>
 </html>
