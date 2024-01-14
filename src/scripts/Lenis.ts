@@ -1,14 +1,22 @@
 import Lenis from "@studio-freight/lenis";
 
-const lenis = new Lenis();
-
-lenis.on("scroll", (e: any) => {
-  console.log(e);
-});
-
-function raf(time: any) {
-  lenis.raf(time);
-  requestAnimationFrame(raf);
+export interface LenisConfig {
+  development?: boolean;
 }
 
-requestAnimationFrame(raf);
+export default function (props: LenisConfig = {}) {
+  const lenis = new Lenis();
+
+  if (props.development) {
+    lenis.on("scroll", (e: any) => {
+      console.log(e);
+    });
+  }
+
+  function raf(time: any) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+
+  requestAnimationFrame(raf);
+}
