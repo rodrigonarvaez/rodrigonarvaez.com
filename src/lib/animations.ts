@@ -43,7 +43,11 @@ export function revealOnScroll(
       duration: 0.6,
       ease: 'power3.out',
       stagger: 0.1,
-      scrollTrigger: { trigger: targets[0], start: 'top 80%', once: true },
+      scrollTrigger: {
+        trigger: targets[0],
+        start: 'top 80%',
+        toggleActions: 'play none none reverse',
+      },
     },
   )
 }
@@ -64,7 +68,11 @@ export function staggerChildren(container: HTMLElement): gsap.core.Tween {
       duration: 0.6,
       ease: 'power3.out',
       stagger: 0.1,
-      scrollTrigger: { trigger: container, start: 'top 80%', once: true },
+      scrollTrigger: {
+        trigger: container,
+        start: 'top 80%',
+        toggleActions: 'play none none reverse',
+      },
     },
   )
 }
