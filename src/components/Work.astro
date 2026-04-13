@@ -1,0 +1,98 @@
+---
+interface Project {
+  name: string
+  type: 'Personal Project' | 'Open Source Contribution' | 'Professional'
+  org?: string
+  description: string
+  tech: string[]
+  source?: string
+}
+
+const projects: Project[] = []
+
+const typeColor: Record<Project['type'], string> = {
+  'Personal Project': 'text-fg-muted',
+  'Open Source Contribution': 'text-accent',
+  Professional: 'text-fg-subtle',
+}
+---
+
+<section id="work" aria-labelledby="work-heading" class="py-24 md:py-32">
+  <div class="mx-auto max-w-5xl px-6">
+    <div data-work-header class="mb-12">
+      <span
+        class="text-accent mb-3 block font-mono text-xs tracking-widest uppercase"
+        >Work</span
+      >
+      <h2
+        id="work-heading"
+        class="font-display text-fg text-3xl font-bold tracking-tight md:text-4xl"
+      >
+        Things I've built
+      </h2>
+    </div>
+
+    <div data-work-grid class="grid grid-cols-1 gap-6 md:grid-cols-2">
+      {
+        projects.map((project) => (
+          <article class="border-border bg-raised hover:border-accent flex flex-col rounded-xl border p-6 transition-all duration-300 hover:-translate-y-1">
+            <header class="mb-4 flex items-start justify-between gap-4">
+              <div>
+                <h3 class="font-display text-fg text-lg font-semibold">
+                  {project.name}
+                </h3>
+                {project.org && (
+                  <p class="text-fg-muted mt-0.5 text-xs">{project.org}</p>
+                )}
+              </div>
+              <span
+                class={`bg-high shrink-0 rounded-full px-2.5 py-0.5 text-xs font-medium ${typeColor[project.type]}`}
+              >
+                {project.type}
+              </span>
+            </header>
+
+            <p class="text-fg-subtle mb-4 flex-1 text-sm leading-relaxed">
+              {project.description}
+            </p>
+
+            <div class="flex flex-wrap gap-2">
+              {project.tech.map((t) => (
+                <span class="bg-high text-fg-muted rounded px-2 py-0.5 font-mono text-xs">
+                  {t}
+                </span>
+              ))}
+            </div>
+
+            {project.source && (
+              <a
+                href={project.source}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-accent mt-4 self-start text-xs underline-offset-4 hover:underline"
+              >
+                View source →
+              </a>
+            )}
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  import { revealOnScroll, staggerChildren } from '../lib/animations'
+
+  const header = document.querySelector<HTMLElement>('#work [data-work-header]')
+  if (header) {
+    header.setAttribute('data-animate', '')
+    revealOnScroll(Array.from(header.children) as HTMLElement[])
+  }
+
+  const grid = document.querySelector<HTMLElement>('#work [data-work-grid]')
+  if (grid) {
+    grid.setAttribute('data-animate', '')
+    staggerChildren(grid)
+  }
+</script>

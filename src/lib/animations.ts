@@ -34,16 +34,18 @@ export function revealOnScroll(
     return gsap.set(targets, { opacity: 1, y: 0 })
   }
 
-  return gsap.from(targets, {
-    opacity: 0,
-    y: 30,
-    duration: 0.6,
-    ease: 'power3.out',
-    scrollTrigger: {
-      trigger: targets[0],
-      start: 'top 80%',
+  return gsap.fromTo(
+    targets,
+    { opacity: 0, y: 30 },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      ease: 'power3.out',
+      stagger: 0.1,
+      scrollTrigger: { trigger: targets[0], start: 'top 80%', once: true },
     },
-  })
+  )
 }
 
 export function staggerChildren(container: HTMLElement): gsap.core.Tween {
@@ -53,15 +55,16 @@ export function staggerChildren(container: HTMLElement): gsap.core.Tween {
     return gsap.set(children, { opacity: 1, y: 0 })
   }
 
-  return gsap.from(children, {
-    opacity: 0,
-    y: 30,
-    duration: 0.6,
-    ease: 'power3.out',
-    stagger: 0.1,
-    scrollTrigger: {
-      trigger: container,
-      start: 'top 80%',
+  return gsap.fromTo(
+    children,
+    { opacity: 0, y: 30 },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      ease: 'power3.out',
+      stagger: 0.1,
+      scrollTrigger: { trigger: container, start: 'top 80%', once: true },
     },
-  })
+  )
 }

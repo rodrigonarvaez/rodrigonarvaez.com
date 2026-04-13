@@ -72,6 +72,17 @@
   }
 }
 
+/*
+  Scroll-animation initial state.
+  JS sets [data-animate] on a container before triggering GSAP fromTo(),
+  hiding children until the ScrollTrigger fires. Without JS the attribute
+  is never set, so content stays visible.
+*/
+[data-animate] > * {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

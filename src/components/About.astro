@@ -1,0 +1,48 @@
+---
+
+---
+
+<section id="about" aria-labelledby="about-heading" class="py-24 md:py-32">
+  <div class="mx-auto max-w-5xl px-6">
+    <div data-about-content class="max-w-prose">
+      <span
+        class="text-accent mb-3 block font-mono text-xs tracking-widest uppercase"
+      >
+        About
+      </span>
+      <h2
+        id="about-heading"
+        class="font-display text-fg mb-6 text-3xl font-bold tracking-tight md:text-4xl"
+      >
+        A bit about me
+      </h2>
+      <p class="text-fg-subtle mb-6 leading-relaxed">
+        I'm a software engineer based in Cincinnati with 14+ years of experience
+        building for the web. I work across the full stack — React and
+        TypeScript on the front end, Node.js and serverless on the back, all
+        running on AWS. I care about clean architecture, reliable systems, and
+        writing code that the next person can actually read.
+      </p>
+      <a
+        href="https://www.linkedin.com/in/ronarvaez/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-accent text-sm underline-offset-4 hover:underline"
+      >
+        More on LinkedIn →
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { revealOnScroll } from '../lib/animations'
+
+  const content = document.querySelector<HTMLElement>(
+    '#about [data-about-content]',
+  )
+  if (content) {
+    content.setAttribute('data-animate', '')
+    revealOnScroll(Array.from(content.children) as HTMLElement[])
+  }
+</script>
