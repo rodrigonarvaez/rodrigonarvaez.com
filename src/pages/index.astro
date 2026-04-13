@@ -1,12 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
+import Hero from '../components/Hero.astro'
 ---
 
 <BaseLayout>
-  <main id="main-content" class="flex min-h-dvh items-center justify-center px-6">
-    <div class="text-center">
-      <h1 class="text-5xl font-bold tracking-tight text-fg md:text-7xl">Rodrigo Narvaez</h1>
-      <p class="mt-4 text-lg text-fg-subtle md:text-xl">Senior Software Engineer</p>
-    </div>
+  <main id="main-content">
+    <Hero />
   </main>
 </BaseLayout>

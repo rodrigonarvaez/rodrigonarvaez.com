@@ -1,0 +1,62 @@
+---
+---
+
+<section
+  id="hero"
+  class="relative flex min-h-dvh flex-col items-center justify-center px-6 text-center"
+>
+  <div data-hero-content class="flex flex-col items-center gap-6">
+    <h1
+      class="font-display text-5xl font-bold tracking-tight text-fg md:text-7xl lg:text-8xl"
+    >
+      Rodrigo Narvaez
+    </h1>
+    <p class="text-xl text-fg-subtle md:text-2xl">Senior Software Engineer</p>
+    <p class="text-sm text-fg-muted md:text-base">
+      Building reliable software since 2011.
+    </p>
+    <div class="flex items-center gap-8 text-sm">
+      <a
+        href="https://linkedin.com/in/rnarvaez"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-fg-subtle underline-offset-4 transition-colors duration-200 hover:text-accent hover:underline"
+      >LinkedIn</a>
+      <a
+        href="https://github.com/rnarvaez"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-fg-subtle underline-offset-4 transition-colors duration-200 hover:text-accent hover:underline"
+      >GitHub</a>
+    </div>
+  </div>
+
+  <!-- Scroll hint — hidden from screen readers -->
+  <div
+    aria-hidden="true"
+    class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-fg-muted opacity-40"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <polyline points="6 9 12 15 18 9" />
+    </svg>
+  </div>
+</section>
+
+<script>
+  import { heroReveal } from '../lib/animations'
+
+  const content = document.querySelector<HTMLElement>('#hero [data-hero-content]')
+  if (content) {
+    heroReveal(content)
+  }
+</script>

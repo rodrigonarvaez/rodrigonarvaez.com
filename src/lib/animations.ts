@@ -16,13 +16,11 @@ export function heroReveal(container: HTMLElement): gsap.core.Timeline {
     return tl
   }
 
-  tl.from(children, {
-    opacity: 0,
-    y: 40,
-    duration: 1.0,
-    stagger: 0.1,
-    ease: 'power3.out',
-  })
+  tl.fromTo(
+    children,
+    { opacity: 0, y: 40 },
+    { opacity: 1, y: 0, duration: 1.0, stagger: 0.1, ease: 'power3.out' },
+  )
 
   return tl
 }
