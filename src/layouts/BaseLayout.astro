@@ -1,0 +1,74 @@
+---
+import '../styles/app.css'
+
+interface Props {
+  title?: string
+  description?: string
+}
+
+const {
+  title = 'Rodrigo Narvaez — Senior Software Engineer',
+  description = 'Personal portfolio of Rodrigo Narvaez, a Senior Software Engineer with 13+ years of experience building products and systems.',
+} = Astro.props
+
+const SITE_URL = 'https://rodrigonarvaez.com'
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? SITE_URL).href
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Rodrigo Narvaez',
+  url: SITE_URL,
+  jobTitle: 'Senior Software Engineer',
+  sameAs: ['https://github.com/rnarvaez', 'https://linkedin.com/in/rnarvaez'],
+  knowsAbout: [
+    'Software Engineering',
+    'TypeScript',
+    'React',
+    'Node.js',
+    'Distributed Systems',
+    'Cloud Architecture',
+  ],
+}
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="Rodrigo Narvaez" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Structured data -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <a
+      href="#main-content"
+      class="focus:bg-accent sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-[var(--color-base)] focus:outline-none"
+    >
+      Skip to main content
+    </a>
+
+    <slot />
+  </body>
+</html>
