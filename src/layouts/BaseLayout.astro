@@ -1,5 +1,6 @@
 ---
 import '../styles/app.css'
+import InitAnimations from '../components/InitAnimations.astro'
 
 interface Props {
   title?: string
@@ -70,5 +71,6 @@ const jsonLd = {
     </a>
 
     <slot />
+    <InitAnimations />
   </body>
 </html>
