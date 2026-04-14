@@ -1,5 +1,6 @@
 ---
 import '../styles/app.css'
+import Header from '../components/Header.astro'
 import InitAnimations from '../components/InitAnimations.astro'
 
 interface Props {
@@ -70,6 +71,7 @@ const jsonLd = {
       Skip to main content
     </a>
 
+    <Header />
     <slot />
     <InitAnimations />
   </body>
