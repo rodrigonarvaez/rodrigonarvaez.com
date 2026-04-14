@@ -9,6 +9,7 @@ let rafId: number | null = null
 
 export function initLenis(): void {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+  if (window.matchMedia('(pointer: coarse)').matches) return
 
   lenis = new Lenis()
 

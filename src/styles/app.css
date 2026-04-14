@@ -38,10 +38,12 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    overflow-x: hidden;
   }
 
   body {
     min-height: 100dvh;
+    overflow-wrap: break-word;
   }
 
   ::selection {
@@ -81,6 +83,12 @@
 [data-animate] > * {
   opacity: 0;
   transform: translateY(30px);
+}
+
+@media (max-height: 600px) {
+  [data-scroll-indicator] {
+    display: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

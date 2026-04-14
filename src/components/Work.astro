@@ -73,7 +73,7 @@ const typeColor: Record<Project['type'], string> = {
       {
         projects.map((project) => (
           <article class="border-border bg-raised hover:border-accent flex flex-col rounded-xl border p-6 transition-all duration-300 hover:-translate-y-1">
-            <header class="mb-4 flex items-start justify-between gap-4">
+            <header class="mb-4 flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
               <div>
                 <h3 class="font-display text-fg text-lg font-semibold">
                   {project.name}
