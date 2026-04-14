@@ -1,0 +1,89 @@
+---
+interface SkillGroup {
+  label: string
+  skills: string
+}
+
+const groups: SkillGroup[] = [
+  { label: 'Languages', skills: 'JavaScript, TypeScript, Java, Python' },
+  {
+    label: 'Frontend',
+    skills: 'React, Next.js, GraphQL, Tailwind CSS, HTML, CSS',
+  },
+  {
+    label: 'Backend',
+    skills: 'Node.js, REST APIs, OpenAPI/Swagger, GraphQL, Serverless',
+  },
+  {
+    label: 'Cloud',
+    skills:
+      'Lambda, API Gateway, Cognito, SNS/SQS, Step Functions, EventBridge, CloudWatch, CloudFront, Route 53, S3',
+  },
+  { label: 'Data', skills: 'MongoDB, PostgreSQL, MySQL' },
+  { label: 'Testing', skills: 'Jest, Testing Library' },
+  {
+    label: 'Tooling',
+    skills: 'GitHub, Kibana, Sentry, LaunchDarkly, Plaid, CI/CD Pipelines',
+  },
+  {
+    label: 'Practices',
+    skills: 'Agile/Scrum, Code Reviews, System Design, API Versioning',
+  },
+]
+---
+
+<section
+  id="skills"
+  aria-labelledby="skills-heading"
+  class="scroll-mt-20 py-24 md:py-32"
+>
+  <div class="mx-auto max-w-5xl px-6">
+    <div data-skills-header class="mb-12">
+      <span
+        class="text-accent mb-3 block font-mono text-xs tracking-widest uppercase"
+      >
+        Skills
+      </span>
+      <h2
+        id="skills-heading"
+        class="font-display text-fg text-3xl font-bold tracking-tight md:text-4xl"
+      >
+        What I work with
+      </h2>
+    </div>
+
+    <div
+      data-skills-grid
+      class="grid grid-cols-1 gap-x-12 gap-y-8 md:grid-cols-2"
+    >
+      {
+        groups.map(({ label, skills }) => (
+          <div class="hover:border-accent border-l-2 border-transparent pl-4 transition-colors duration-200">
+            <h3 class="text-accent mb-2 font-mono text-xs tracking-widest uppercase">
+              {label}
+            </h3>
+            <p class="text-fg-subtle text-sm leading-relaxed">{skills}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  import { revealOnScroll, staggerChildren } from '../lib/animations'
+
+  const header = document.querySelector<HTMLElement>(
+    '#skills [data-skills-header]',
+  )
+  if (header) {
+    header.setAttribute('data-animate', '')
+    revealOnScroll(Array.from(header.children) as HTMLElement[])
+  }
+
+  const grid = document.querySelector<HTMLElement>('#skills [data-skills-grid]')
+  if (grid) {
+    grid.setAttribute('data-animate', '')
+    staggerChildren(grid)
+  }
+</script>

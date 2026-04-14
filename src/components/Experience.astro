@@ -1,0 +1,114 @@
+---
+interface Role {
+  title: string
+  company: string
+  period: string
+  location: string
+  description: string
+}
+
+const roles: Role[] = [
+  {
+    title: 'Senior Lorem Engineer',
+    company: 'Ipsum Corp',
+    period: '2022 – Present',
+    location: 'Dolor, ST',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
+  },
+  {
+    title: 'Lorem Engineer',
+    company: 'Ipsum Corp',
+    period: '2018 – 2022',
+    location: 'Dolor, ST',
+    description:
+      'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.',
+  },
+  {
+    title: 'Junior Lorem Developer',
+    company: 'Earlier Roles',
+    period: '2011 – 2018',
+    location: 'Amet, ST → Dolor, ST',
+    description:
+      'Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.',
+  },
+]
+---
+
+<section
+  id="experience"
+  aria-labelledby="experience-heading"
+  class="scroll-mt-20 py-24 md:py-32"
+>
+  <div class="mx-auto max-w-5xl px-6">
+    <div data-experience-header class="mb-12">
+      <span
+        class="text-accent mb-3 block font-mono text-xs tracking-widest uppercase"
+      >
+        Experience
+      </span>
+      <h2
+        id="experience-heading"
+        class="font-display text-fg text-3xl font-bold tracking-tight md:text-4xl"
+      >
+        Where I've been
+      </h2>
+    </div>
+
+    <div class="relative">
+      <!-- Vertical connecting line -->
+      <div
+        class="bg-border absolute top-2 bottom-4 left-4 w-px"
+        aria-hidden="true"
+      >
+      </div>
+
+      <!-- Timeline entries — direct children for staggerChildren -->
+      <div data-timeline class="space-y-12">
+        {
+          roles.map((role) => (
+            <div class="relative pl-12">
+              <div
+                class="bg-accent ring-base absolute top-1.5 left-4 h-2.5 w-2.5 -translate-x-1/2 rounded-full ring-2"
+                aria-hidden="true"
+              />
+
+              <h3 class="font-display text-fg text-lg font-semibold">
+                {role.title}
+              </h3>
+              <span class="text-fg-subtle mt-0.5 block text-sm">
+                {role.company}
+              </span>
+              <p class="text-fg-muted mt-1 font-mono text-xs">
+                {role.period} · {role.location}
+              </p>
+              <p class="text-fg-subtle mt-3 text-sm leading-relaxed">
+                {role.description}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { revealOnScroll, staggerChildren } from '../lib/animations'
+
+  const header = document.querySelector<HTMLElement>(
+    '#experience [data-experience-header]',
+  )
+  if (header) {
+    header.setAttribute('data-animate', '')
+    revealOnScroll(Array.from(header.children) as HTMLElement[])
+  }
+
+  const timeline = document.querySelector<HTMLElement>(
+    '#experience [data-timeline]',
+  )
+  if (timeline) {
+    timeline.setAttribute('data-animate', '')
+    staggerChildren(timeline)
+  }
+</script>
