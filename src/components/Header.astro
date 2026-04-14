@@ -179,6 +179,9 @@ const navLinks = [
     iconClose?.classList.remove('hidden')
     // Ensure header stays visible while menu is open
     header.style.transform = ''
+    // Move focus into the menu so keyboard users are inside it
+    const firstLink = mobileMenu?.querySelector<HTMLElement>('a')
+    firstLink?.focus()
   }
 
   function closeMenu(): void {
@@ -200,6 +203,33 @@ const navLinks = [
   })
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && menuOpen) closeMenu()
+    if (e.key === 'Escape' && menuOpen) {
+      closeMenu()
+      menuToggle?.focus()
+      return
+    }
+
+    // Focus trap: keep Tab cycling within the open mobile menu
+    if (!menuOpen || e.key !== 'Tab') return
+
+    const focusableLinks = Array.from(
+      mobileMenu?.querySelectorAll<HTMLElement>('a') ?? [],
+    )
+    if (focusableLinks.length === 0) return
+
+    const first = focusableLinks[0]
+    const last = focusableLinks[focusableLinks.length - 1]
+
+    if (e.shiftKey) {
+      if (document.activeElement === first) {
+        e.preventDefault()
+        last.focus()
+      }
+    } else {
+      if (document.activeElement === last) {
+        e.preventDefault()
+        first.focus()
+      }
+    }
   })
 </script>

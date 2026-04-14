@@ -43,6 +43,7 @@ const roles: Role[] = [
   <div class="mx-auto max-w-5xl px-6">
     <div data-experience-header class="mb-12">
       <span
+        aria-hidden="true"
         class="text-accent mb-3 block font-mono text-xs tracking-widest uppercase"
       >
         Experience
@@ -64,10 +65,10 @@ const roles: Role[] = [
       </div>
 
       <!-- Timeline entries — direct children for staggerChildren -->
-      <div data-timeline class="space-y-12">
+      <ol data-timeline class="space-y-12">
         {
           roles.map((role) => (
-            <div class="relative pl-10 sm:pl-12">
+            <li class="relative pl-10 sm:pl-12">
               <div
                 class="bg-accent ring-base absolute top-1.5 left-4 h-2.5 w-2.5 -translate-x-1/2 rounded-full ring-2"
                 aria-hidden="true"
@@ -79,16 +80,16 @@ const roles: Role[] = [
               <span class="text-fg-subtle mt-0.5 block text-sm">
                 {role.company}
               </span>
-              <p class="text-fg-muted mt-1 font-mono text-xs">
+              <p class="text-fg-subtle mt-1 font-mono text-xs">
                 {role.period} · {role.location}
               </p>
               <p class="text-fg-subtle mt-3 text-sm leading-relaxed">
                 {role.description}
               </p>
-            </div>
+            </li>
           ))
         }
-      </div>
+      </ol>
     </div>
   </div>
 </section>

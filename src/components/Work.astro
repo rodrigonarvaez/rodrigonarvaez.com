@@ -44,7 +44,7 @@ const projects: Project[] = [
 ]
 
 const typeColor: Record<Project['type'], string> = {
-  'Personal Project': 'text-fg-muted',
+  'Personal Project': 'text-fg-subtle',
   'Open Source Contribution': 'text-accent',
   Professional: 'text-fg-subtle',
 }
@@ -58,6 +58,7 @@ const typeColor: Record<Project['type'], string> = {
   <div class="mx-auto max-w-5xl px-6">
     <div data-work-header class="mb-12">
       <span
+        aria-hidden="true"
         class="text-accent mb-3 block font-mono text-xs tracking-widest uppercase"
         >Work</span
       >
@@ -79,7 +80,7 @@ const typeColor: Record<Project['type'], string> = {
                   {project.name}
                 </h3>
                 {project.org && (
-                  <p class="text-fg-muted mt-0.5 text-xs">{project.org}</p>
+                  <p class="text-fg-subtle mt-0.5 text-xs">{project.org}</p>
                 )}
               </div>
               <span
@@ -93,13 +94,13 @@ const typeColor: Record<Project['type'], string> = {
               {project.description}
             </p>
 
-            <div class="flex flex-wrap gap-2">
+            <ul class="flex flex-wrap gap-2">
               {project.tech.map((t) => (
-                <span class="bg-high text-fg-muted rounded px-2 py-0.5 font-mono text-xs">
+                <li class="bg-high text-fg-subtle rounded px-2 py-0.5 font-mono text-xs">
                   {t}
-                </span>
+                </li>
               ))}
-            </div>
+            </ul>
 
             {project.source && (
               <a
