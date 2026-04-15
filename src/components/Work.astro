@@ -10,36 +10,42 @@ interface Project {
 
 const projects: Project[] = [
   {
-    name: 'Aurum Dashboard',
-    type: 'Personal Project',
+    name: 'Consumer Lending Platform',
+    type: 'Professional',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    tech: ['React', 'TypeScript', 'Node.js', 'PostgreSQL'],
-    source: 'https://github.com/rodrigonarvaez/aurum-dashboard',
+      'Architected and shipped customer-facing features across a consumer lending platform — loan origination, account management, and payment flows. Built event-driven backend services on AWS and integrated financial data providers for real-time decisioning.',
+    tech: [
+      'React',
+      'TypeScript',
+      'Node.js',
+      'Serverless',
+      'Openapi',
+      'AWS',
+      'MongoDB',
+    ],
   },
   {
-    name: 'Meridian API',
-    type: 'Personal Project',
+    name: 'Engineering Tooling & Platform',
+    type: 'Professional',
     description:
-      'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    tech: ['Node.js', 'GraphQL', 'Redis', 'Docker'],
-    source: 'https://github.com/rodrigonarvaez/meridian-api',
+      'Designed and maintained internal developer tooling to reduce friction across the SDLC — shared component libraries, CI/CD pipeline improvements, and observability integrations that shortened the feedback loop from development to production.',
+    tech: ['React', 'Node.js', 'Jest', 'Sentry', 'LaunchDarkly'],
   },
   {
-    name: 'react-scroll-sync',
+    name: 'customize-cra',
     type: 'Open Source Contribution',
     description:
-      'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-    tech: ['JavaScript', 'React', 'Rollup'],
-    source: 'https://github.com/okonet/react-scroll-sync',
+      "Contributed to customize-cra, a utility for extending Create React App's webpack configuration without ejecting. Used across thousands of projects to bridge CRA conventions with custom build requirements.",
+    tech: ['JavaScript', 'Create React App'],
+    source: 'https://github.com/arackaf/customize-cra',
   },
   {
-    name: 'Atlas Platform',
-    type: 'Professional',
-    org: 'Acme Corp',
+    name: 'rodrigonarvaez.com',
+    type: 'Personal Project',
     description:
-      'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit.',
-    tech: ['React', 'TypeScript', 'AWS Lambda', 'API Gateway', 'PostgreSQL'],
+      'This site. Static-first with Astro, Tailwind CSS v4 design tokens, and GSAP scroll-driven animations. Dark/light theme system with no-flash init. 98 Lighthouse performance score, 100 on accessibility.',
+    tech: ['Astro', 'TypeScript', 'Tailwind CSS', 'GSAP'],
+    source: 'https://github.com/rodrigonarvaez/rodrigonarvaez.com',
   },
 ]
 
@@ -53,7 +59,7 @@ const typeColor: Record<Project['type'], string> = {
 <section
   id="work"
   aria-labelledby="work-heading"
-  class="scroll-mt-20 py-24 md:py-32"
+  class="scroll-mt-2 py-24 md:py-32"
 >
   <div class="mx-auto max-w-5xl px-6">
     <div data-work-header class="mb-12">
