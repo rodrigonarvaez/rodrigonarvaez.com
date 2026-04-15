@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+---
+
+<BaseLayout
+  title="404 — Page Not Found | Rodrigo Narvaez"
+  description="The page you're looking for doesn't exist or has been moved."
+>
+  <main
+    id="main-content"
+    tabindex="-1"
+    class="flex min-h-dvh flex-col items-center justify-center px-6 text-center"
+  >
+    <div data-404-content class="flex flex-col items-center gap-5">
+      <h1
+        class="font-display text-fg text-8xl font-bold tracking-tight sm:text-9xl"
+      >
+        404
+      </h1>
+      <p class="font-display text-fg text-xl font-medium sm:text-2xl">
+        Page is possibly undefined.
+      </p>
+      <p class="text-fg-subtle max-w-sm text-base leading-relaxed">
+        The page you're looking for doesn't exist or has been moved.
+      </p>
+      <a
+        href="/"
+        class="text-fg-subtle hover:text-accent-text mt-2 text-sm underline-offset-4 transition-colors duration-200 hover:underline"
+      >
+        ← Back to home
+      </a>
+    </div>
+  </main>
+</BaseLayout>
+
+<script>
+  import { heroReveal } from '../lib/animations'
+
+  const content = document.querySelector<HTMLElement>('[data-404-content]')
+  if (content) {
+    heroReveal(content)
+  }
+</script>
