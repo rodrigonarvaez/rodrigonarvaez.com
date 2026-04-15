@@ -45,7 +45,7 @@ const projects: Project[] = [
 
 const typeColor: Record<Project['type'], string> = {
   'Personal Project': 'text-fg-subtle',
-  'Open Source Contribution': 'text-accent',
+  'Open Source Contribution': 'text-accent-text',
   Professional: 'text-fg-subtle',
 }
 ---
@@ -107,7 +107,7 @@ const typeColor: Record<Project['type'], string> = {
                 href={project.source}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-accent mt-4 self-start text-xs underline-offset-4 hover:underline"
+                class="text-accent-text mt-4 self-start text-xs underline-offset-4 hover:underline"
               >
                 View source →
               </a>

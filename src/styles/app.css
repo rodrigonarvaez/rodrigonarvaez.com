@@ -3,28 +3,39 @@
 @import 'tailwindcss';
 
 @theme {
-  /* Surfaces */
+  /* Surfaces — dark mode defaults */
   --color-base: #0a0a0a;
-  --color-raised: #141414;
-  --color-overlay: #1e1e1e;
+  --color-raised: #111111;
+  --color-overlay: #1a1a1a;
   --color-high: #242424;
 
   /* Foreground */
   --color-fg: #fafafa;
-  --color-fg-subtle: #a1a1a1;
+  --color-fg-subtle: #a3a3a3;
   --color-fg-muted: #6b6b6b;
 
   /* Accent */
   --color-accent: #a3e635;
   --color-accent-light: #bef264;
+  /*
+   * accent-text: like accent but guaranteed to pass WCAG AA contrast on all
+   * surfaces in both themes. Use for any text or interactive element coloring.
+   * In dark mode this equals accent; in light mode it becomes a darker lime.
+   */
+  --color-accent-text: #a3e635;
 
   /* Border */
-  --color-border: #2a2a2a;
+  --color-border: #262626;
+  --color-border-hover: #404040;
 
   /* Typography */
   --font-display: 'Cabinet Grotesk', 'Inter', system-ui, sans-serif;
-  --font-body: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+  --font-body:
+    'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', 'Inter', system-ui,
+    sans-serif;
+  --font-mono:
+    'JetBrains Mono Variable', 'JetBrains Mono', 'Fira Code', ui-monospace,
+    monospace;
 
   /* Easing */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -50,7 +61,8 @@
 
   ::selection {
     background-color: var(--color-accent);
-    color: var(--color-base);
+    /* Always near-black on lime-green for contrast in both themes */
+    color: #0a0a0a;
   }
 
   h1,
@@ -70,29 +82,102 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-accent);
+    outline: 2px solid var(--color-accent-text);
     outline-offset: 3px;
     border-radius: 2px;
+  }
+
+  /* ── Light theme overrides ─────────────────────────────────────── */
+  [data-theme='light'] {
+    --color-base: #fafaf8;
+    --color-raised: #f5f5f3;
+    --color-overlay: #ebebea;
+    --color-high: #e0e0de;
+    --color-fg: #1a1a1a;
+    --color-fg-subtle: #525252;
+    --color-fg-muted: #737373;
+    /*
+     * Darker lime: 6.7:1 on all light surfaces — passes WCAG AA.
+     * Both --color-accent and --color-accent-text use this value so that
+     * every accent element (eyebrows, dots, borders, text links) is visibly
+     * distinct on cream backgrounds. The vivid #a3e635 is only 1.4:1 on
+     * white — essentially invisible.
+     */
+    --color-accent: #3f6212;
+    --color-accent-text: #3f6212;
+    --color-border: #d4d4d4;
+    --color-border-hover: #a3a3a3;
   }
 }
 
 /*
   Scroll-animation initial state.
-  JS sets [data-animate] on a container before triggering GSAP fromTo(),
-  hiding children until the ScrollTrigger fires. Without JS the attribute
-  is never set, so content stays visible.
+  JS sets [data-animate] on a container before GSAP fromTo() fires,
+  hiding children until the ScrollTrigger triggers. Without JS the
+  attribute is never set, so content stays visible.
 */
 [data-animate] > * {
   opacity: 0;
   transform: translateY(30px);
 }
 
+/*
+  Theme-switching transition.
+  Added by ThemeToggle JS for ~300 ms around the switch, then removed.
+  No !important here — the prefers-reduced-motion rule below overrides
+  durations via !important, making the swap instant when motion is reduced.
+*/
+.theme-transitioning,
+.theme-transitioning * {
+  transition:
+    background-color 250ms ease,
+    color 200ms ease,
+    border-color 200ms ease;
+}
+
+/* ── Header scroll state ───────────────────────────────────────────
+   Background is theme-aware via color-mix — no hardcoded rgba values.
+*/
+[data-header] {
+  transition:
+    transform 300ms var(--ease-out-expo),
+    background-color 200ms ease,
+    border-color 200ms ease,
+    backdrop-filter 200ms ease;
+}
+
+[data-header][data-scrolled] {
+  background-color: color-mix(in srgb, var(--color-base) 88%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom-color: var(--color-border);
+}
+
+/*
+  Theme icon visibility — CSS-driven so the correct icon shows on first paint.
+  data-theme is set synchronously by the inline <head> script before the browser
+  paints, so there is no flash of the wrong icon.
+*/
+[data-theme-icon-moon] {
+  display: none;
+}
+
+[data-theme='light'] [data-theme-icon-sun] {
+  display: none;
+}
+
+[data-theme='light'] [data-theme-icon-moon] {
+  display: block;
+}
+
+/* Hide scroll indicator on short viewports (landscape phones, etc.) */
 @media (max-height: 600px) {
   [data-scroll-indicator] {
     display: none;
   }
 }
 
+/* Reduced motion — last in file so !important overrides .theme-transitioning */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

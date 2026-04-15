@@ -1,4 +1,6 @@
 ---
+import ThemeToggle from './ThemeToggle.astro'
+
 const navLinks = [
   { label: 'About', href: '#about' },
   { label: 'Work', href: '#work' },
@@ -15,72 +17,82 @@ const navLinks = [
     <!-- Monogram logo -->
     <a
       href="#hero"
-      class="font-display text-accent text-xl font-bold"
+      class="font-display text-accent-text text-xl font-bold"
       aria-label="Rodrigo Narvaez — back to top"
     >
       RN
     </a>
 
-    <!-- Desktop nav -->
-    <nav role="navigation" aria-label="Main navigation" class="hidden sm:block">
-      <ul class="flex items-center gap-8 text-sm">
-        {
-          navLinks.map(({ label, href }) => (
-            <li>
-              <a
-                href={href}
-                class="text-fg-subtle hover:text-fg transition-colors duration-200"
-              >
-                {label}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
+    <!-- Right side: desktop nav + theme toggle + mobile hamburger -->
+    <div class="flex items-center gap-2">
+      <!-- Desktop nav -->
+      <nav
+        role="navigation"
+        aria-label="Main navigation"
+        class="mr-2 hidden sm:block"
+      >
+        <ul class="flex items-center gap-8 text-sm">
+          {
+            navLinks.map(({ label, href }) => (
+              <li>
+                <a
+                  href={href}
+                  class="text-fg-subtle hover:text-fg transition-colors duration-200"
+                >
+                  {label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
 
-    <!-- Mobile hamburger -->
-    <button
-      id="menu-toggle"
-      type="button"
-      class="text-fg-subtle hover:text-fg flex h-11 w-11 items-center justify-center rounded transition-colors sm:hidden"
-      aria-label="Open menu"
-      aria-expanded="false"
-      aria-controls="mobile-menu"
-    >
-      <svg
-        id="icon-open"
-        xmlns="http://www.w3.org/2000/svg"
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        aria-hidden="true"
+      <!-- Theme toggle (always visible) -->
+      <ThemeToggle />
+
+      <!-- Mobile hamburger -->
+      <button
+        id="menu-toggle"
+        type="button"
+        class="text-fg-subtle hover:text-fg flex h-11 w-11 items-center justify-center rounded transition-colors sm:hidden"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
       >
-        <line x1="3" y1="6" x2="21" y2="6"></line>
-        <line x1="3" y1="12" x2="21" y2="12"></line>
-        <line x1="3" y1="18" x2="21" y2="18"></line>
-      </svg>
-      <svg
-        id="icon-close"
-        class="hidden"
-        xmlns="http://www.w3.org/2000/svg"
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        aria-hidden="true"
-      >
-        <line x1="18" y1="6" x2="6" y2="18"></line>
-        <line x1="6" y1="6" x2="18" y2="18"></line>
-      </svg>
-    </button>
+        <svg
+          id="icon-open"
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          aria-hidden="true"
+        >
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+        <svg
+          id="icon-close"
+          class="hidden"
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          aria-hidden="true"
+        >
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
   </div>
 
   <!-- Mobile menu panel -->
@@ -123,20 +135,10 @@ const navLinks = [
   let prevScrollY = window.scrollY
   let menuOpen = false
 
-  // Apply slide + bg transitions only when motion is allowed.
-  // The global prefers-reduced-motion CSS reset (transition-duration: 0.01ms)
-  // will kill any transitions we set here anyway, but we also skip
-  // the translateY logic entirely to avoid snapping the header off-screen.
-  if (!reducedMotion) {
-    header.style.transition = [
-      'transform 300ms var(--ease-out-expo)',
-      'background-color 200ms ease',
-      'backdrop-filter 200ms ease',
-      'border-color 200ms ease',
-    ].join(', ')
-  }
-
   // ── Scroll behavior ──────────────────────────────────────────────────────────
+  // Background, border, and backdrop-filter are handled entirely by CSS via the
+  // [data-scrolled] attribute — no hardcoded colours here, so the header is
+  // automatically theme-aware.
 
   function updateHeader(): void {
     const scrollY = window.scrollY
@@ -144,18 +146,11 @@ const navLinks = [
     const scrollingDown = scrollY > prevScrollY
 
     if (atTop) {
-      header.style.backgroundColor = 'transparent'
-      header.style.backdropFilter = ''
-      header.style.removeProperty('-webkit-backdrop-filter')
-      header.style.borderBottomColor = 'transparent'
+      header.removeAttribute('data-scrolled')
       header.style.transform = ''
     } else {
-      header.style.backgroundColor = 'rgba(10, 10, 10, 0.85)'
-      header.style.backdropFilter = 'blur(12px)'
-      header.style.setProperty('-webkit-backdrop-filter', 'blur(12px)')
-      header.style.borderBottomColor = 'var(--color-border)'
-
-      // Hide on scroll down; keep visible while mobile menu is open
+      header.setAttribute('data-scrolled', '')
+      // Hide on scroll down; skip the animation if motion is reduced or menu is open
       if (!reducedMotion && !menuOpen) {
         header.style.transform = scrollingDown ? 'translateY(-100%)' : ''
       }
