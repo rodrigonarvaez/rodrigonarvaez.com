@@ -5,6 +5,7 @@ dist/
 
 # dependencies
 node_modules/
+.nvmrc
 
 # logs
 npm-debug.log*

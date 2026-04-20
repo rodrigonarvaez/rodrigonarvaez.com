@@ -48,12 +48,6 @@ const projects: Project[] = [
     source: 'https://github.com/rodrigonarvaez/rodrigonarvaez.com',
   },
 ]
-
-const typeColor: Record<Project['type'], string> = {
-  'Personal Project': 'text-fg-subtle',
-  'Open Source Contribution': 'text-accent-text',
-  Professional: 'text-fg-subtle',
-}
 ---
 
 <section
@@ -90,7 +84,7 @@ const typeColor: Record<Project['type'], string> = {
                 )}
               </div>
               <span
-                class={`bg-high shrink-0 rounded-full px-2.5 py-0.5 text-xs font-medium ${typeColor[project.type]}`}
+                class={`bg-high text-accent-text shrink-0 rounded-full px-2.5 py-0.5 text-xs font-medium`}
               >
                 {project.type}
               </span>
